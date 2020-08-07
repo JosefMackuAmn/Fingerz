@@ -12,10 +12,13 @@
     "mongoose": "^5.9.27",
     "nodemon": "^2.0.4"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "node-sass": "^4.14.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "compile": "node-sass public/scss/main.scss public/css/style.css -w"
   },
   "author": "AmnioN web",
   "license": "ISC"
