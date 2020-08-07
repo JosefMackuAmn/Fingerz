@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/', gameController.getIndex);
 
-//router.get('/sea', gameController.getSea);
+router.get('/sea', gameController.getSea);
 //router.get('/game/:levelId', gameController.getGame);
 
 //router.post('/result', gameController.postResult);
