@@ -1,11 +1,13 @@
+const passedToViews = require('../util/passed-to-views');
+
 exports.getIndex = (req, res, next) => {
     res.render('game/index', {
-        pageTitle: "Home"
+        ...passedToViews(req, "Home")
     })
 }
 
 exports.getSea = (req, res, next) => {
     res.render('game/sea', {
-        pageTitle: "Sea map"
+        ...passedToViews(req, "Sea map")
     })
 }
