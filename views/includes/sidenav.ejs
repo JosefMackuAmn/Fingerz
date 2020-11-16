@@ -1,0 +1,17 @@
+<aside class="sidenav">
+    <section class="sidenav__header">
+        <img class="sidenav__header__photo" />
+        <h2 class="heading-2">Guest guest</h2>
+        <p class="paragraph-small">Register now</p>
+    </section>
+    <nav class="sidenav__nav">
+        <ul class="sidenav__nav__list">
+            <li class="sidenav__nav__item <% if (activeLink === 'sea') { %>active<% } %>"><a href="/sea">Sea map</a></li>
+            <li class="sidenav__nav__item <% if (activeLink === 'stats') { %>active<% } %>"><a href="/stats">Stats</a></li>
+            <li class="sidenav__nav__item <% if (activeLink === 'achievements') { %>active<% } %>"><a href="/achievements">Achievements</a></li>
+            <li class="sidenav__nav__item <% if (activeLink === 'lampalm') { %>active<% } %>"><a href="/palm">Lampalm</a></li>
+            <li class="sidenav__nav__item <% if (activeLink === 'options') { %>active<% } %>"><a href="/options">Options</a></li>
+        </ul>
+        <a href="#" class="sidenav__nav__buy">Buy premium!</a>
+    </nav>
+</aside>

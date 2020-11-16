@@ -2,8 +2,17 @@
 </head>
 <body>
 
-    <main>
-        Sea map
+    <main class="sea-map">
+        
+        <section class="sea-map__container">
+            <div class="sea-map__map" id="seamap">
+                <div class="sea-map__map__background" id="fishtank"></div>
+                <div class="sea-map__level"></div>
+            </div>
+        </section>
+        
+        <%- include('../includes/sidenav.ejs', { activeLink: 'sea' })  %>
+
     </main>
 
 <%- include('../includes/end.ejs') %>

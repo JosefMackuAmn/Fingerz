@@ -18,12 +18,14 @@
     "nodemon": "^2.0.4"
   },
   "devDependencies": {
-    "node-sass": "^4.14.1"
+    "node-sass": "^4.14.1",
+    "webpack": "^5.4.0",
+    "webpack-cli": "^4.2.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js",
-    "compile": "node-sass public/scss/main.scss public/css/style.css -w"
+    "compile": "node-sass src/scss/main.scss public/css/style.css -w",
+    "compile:js": "webpack --config webpack.config.js --watch"
   },
   "author": "AmnioN web",
   "license": "ISC"
