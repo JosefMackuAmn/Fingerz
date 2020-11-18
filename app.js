@@ -1,7 +1,5 @@
 const path = require('path');
 
-const User = require('./models/user');
-
 // Import dependencies
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -10,6 +8,10 @@ const ash = require('express-async-handler');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 const csrf = require('csurf');
+
+// Import custom files
+const User = require('./models/user');
+const passedToViews = require('./util/passed-to-views');
 
 // Import routes
 const gameRoutes = require('./routes/game');
@@ -61,20 +63,21 @@ app.use(authRoutes);
 // Handling 404, 500 case
 app.get('/500', (req, res, next) => {
     res.status(500).render('500', {
-        pageTitle: "500"
+        ...passedToViews(req, '500')
     })
 })
 app.use((req, res, next) => {
     res.status(404).render('404', {
-        pageTitle: "404"
+        ...passedToViews(req, '400')
     })
 })
 
 // Handling next(err)
 app.use((error, req, res, next) => {
     console.log(error);
+    errorMsg = error.message || error.msg;
     res.status(500).render('500', {
-        pageTitle: '500'
+        ...passedToViews(req, '500', errorMsg)
     });
 })
 

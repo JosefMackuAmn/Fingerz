@@ -19,6 +19,97 @@ body {
 a, * a {
   text-decoration: none; }
 
+.ship {
+  width: 80%;
+  height: 100%;
+  position: absolute;
+  left: 0%;
+  bottom: 0%;
+  z-index: 2; }
+  .ship__body {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    position: absolute;
+    left: 0;
+    bottom: 0; }
+  .ship__cannon {
+    transform: translate(-50%, -50%) rotate(12deg);
+    position: absolute;
+    top: 75%;
+    left: 49%; }
+  .ship__flagpole {
+    width: 5rem;
+    height: 85rem;
+    background-color: #A63200;
+    position: absolute; }
+    .ship__flagpole:first-child {
+      left: 20%;
+      bottom: 0; }
+    .ship__flagpole:nth-child(2) {
+      left: calc(20% + 5rem);
+      bottom: 0; }
+  .ship__flag {
+    width: 40rem;
+    height: 13rem;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 72rem;
+    left: calc(20% + 10rem); }
+    .ship__flag img:not(:last-child) {
+      margin-right: 2rem; }
+
+.ship--enemy {
+  width: 20%;
+  height: 20%;
+  position: absolute;
+  right: 0%;
+  bottom: 45%;
+  z-index: 2; }
+  .ship--enemy__body {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    transform: scaleX(-1);
+    position: absolute;
+    right: 0;
+    bottom: 0; }
+  .ship--enemy__cannon {
+    width: 5rem;
+    height: auto;
+    transform: translate(-50%, -50%) rotate(-133deg);
+    position: absolute;
+    top: 61%;
+    left: 14%; }
+  .ship--enemy__flagpole {
+    width: 1rem;
+    height: 30rem;
+    background-color: #A63200;
+    position: absolute; }
+    .ship--enemy__flagpole:first-child {
+      right: 20%;
+      bottom: 0; }
+    .ship--enemy__flagpole:nth-child(2) {
+      right: calc(20% + 1rem);
+      bottom: 0; }
+  .ship--enemy__flag {
+    width: 16rem;
+    height: 7rem;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 23rem;
+    right: calc(20% + 2rem); }
+    .ship--enemy__flag img {
+      width: 3rem; }
+      .ship--enemy__flag img:not(:last-child) {
+        margin-right: 1rem; }
+
 .sidenav {
   width: 35rem;
   height: 100%;
@@ -82,6 +173,28 @@ a, * a {
       display: flex;
       align-items: center;
       justify-content: center; }
+
+.game {
+  width: 100vw;
+  min-height: 90rem;
+  height: 100vh;
+  background-color: #CAECFF;
+  overflow: hidden;
+  position: relative; }
+  .game__ocean {
+    width: 250%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: #3DB9CD;
+    transform: translate(-50%, 50%);
+    position: absolute;
+    bottom: 0;
+    left: 50%; }
+  .game__cannonball {
+    background-color: #463A3A;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 2; }
 
 .sea-map {
   width: 100%;

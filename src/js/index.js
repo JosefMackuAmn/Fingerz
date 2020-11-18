@@ -22,7 +22,8 @@ const ready = callbackFunc => {
 
 const initGame = (type) => {
     switch (type) {
-        case 'VOLCANO': {
+        case 'SHIP_FIGHT': {
+            fcns.initShipFight();
             break;
         }
         default: return;

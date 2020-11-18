@@ -1,0 +1,128 @@
+.ship {
+    width: 80%;
+    height: 100%;
+
+    position: absolute;
+    left: 0%;
+    bottom: 0%;
+    z-index: 2;
+
+    &__body {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    
+        position: absolute;
+        left: 0;
+        bottom: 0;
+    }
+    &__cannon {
+        transform: translate(-50%, -50%) rotate(12deg);
+
+        position: absolute;
+        top: 75%;
+        left: 49%;
+    }
+    &__flagpole {
+        width: 5rem;
+        height: 85rem;
+        background-color: $color-brown-dark;
+
+        position: absolute;
+
+        &:first-child {
+            left: 20%;
+            bottom: 0;
+        }
+        &:nth-child(2) {
+            left: calc(20% + 5rem);
+            bottom: 0;
+        }
+    }
+    &__flag {
+        width: 40rem;
+        height: 13rem;
+        background-color: $color-white;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        position: absolute;
+        bottom: 72rem;
+        left: calc(20% + 10rem);
+
+        & img {
+            &:not(:last-child) {
+                margin-right: 2rem;
+            }
+        }
+    }
+}
+
+.ship--enemy {
+    width: 20%;
+    height: 20%;
+
+    position: absolute;
+    right: 0%;
+    bottom: 45%;
+    z-index: 2;
+
+    &__body {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        transform: scaleX(-1);
+    
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+    &__cannon {
+        width: 5rem;
+        height: auto;
+        transform: translate(-50%, -50%) rotate(-133deg);
+
+        position: absolute;
+        top: 61%;
+        left: 14%;
+    }
+    &__flagpole {
+        width: 1rem;
+        height: 30rem;
+        background-color: $color-brown-dark;
+
+        position: absolute;
+
+        &:first-child {
+            right: 20%;
+            bottom: 0;
+        }
+        &:nth-child(2) {
+            right: calc(20% + 1rem);
+            bottom: 0;
+        }
+    }
+    &__flag {
+        width: 16rem;
+        height: 7rem;
+        background-color: $color-black;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        position: absolute;
+        bottom: 23rem;
+        right: calc(20% + 2rem);
+
+        & img {
+            width: 3rem;
+
+            &:not(:last-child) {
+                margin-right: 1rem;
+            }
+        }
+    }
+}

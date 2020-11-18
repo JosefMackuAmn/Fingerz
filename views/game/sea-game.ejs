@@ -2,8 +2,32 @@
 </head>
 <body>
 
-    <main data-gametype="SHIP_FIGHT" id="game">
+    <main class="game" data-gametype="SHIP_FIGHT" id="game">
+
         <div class="game__ocean"></div>
+        <div class="ship">
+            <div class="ship__flagpole"></div>
+            <div class="ship__flagpole"></div>
+            <div class="ship__flag">
+                <img src="/img/srdce.svg" alt="Heart">
+                <img src="/img/srdce.svg" alt="Heart">
+                <img src="/img/srdce.svg" alt="Heart">
+            </div>
+            <img class="ship__body" src="/img/trup.svg" alt="Ship body" id="ship">
+            <img class="ship__cannon" src="/img/cannon.svg" alt="Cannon" id="cannon">
+        </div>
+
+        <div class="ship--enemy">
+            <div class="ship--enemy__flagpole"></div>
+            <div class="ship--enemy__flagpole"></div>
+            <div class="ship--enemy__flag">
+                <img src="/img/srdce.svg" alt="Heart">
+                <img src="/img/srdce.svg" alt="Heart">
+                <img src="/img/srdce.svg" alt="Heart">
+            </div>
+            <img class="ship--enemy__body" src="/img/trup.svg" alt="Ship body" id="enemyship">
+            <img class="ship--enemy__cannon" src="/img/cannon.svg" alt="Cannon" id="enemycannon">
+        </div>
 
     </main>
 

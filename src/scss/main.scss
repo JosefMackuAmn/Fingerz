@@ -6,10 +6,12 @@
 @import 'base/typography';
 @import 'base/utilities';
 
+@import 'components/ship';
 @import 'components/sidenav';
 
 @import 'layout/footer';
 @import 'layout/header';
 
+@import 'pages/game';
 @import 'pages/index';
 @import 'pages/sea-map';

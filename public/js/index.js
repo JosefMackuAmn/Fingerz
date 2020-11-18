@@ -7,14 +7,119 @@
   !*** ./src/js/functions/index.js ***!
   \***********************************/
 /*! namespace exports */
+/*! export initShipFight [provided] [no usage info] [missing usage info prevents renaming] */
 /*! export showFishes [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__, __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "showFishes": () => /* binding */ showFishes,
+/* harmony export */   "initShipFight": () => /* binding */ initShipFight
+/* harmony export */ });
+/* harmony import */ var _sea__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sea */ "./src/js/functions/sea.js");
+/* harmony import */ var _shipFight__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./shipFight */ "./src/js/functions/shipFight.js");
+;
+
+
+// Define function for showing fishes
+const showFishes = () => {
+    const timeoutTime = Math.floor(Math.random() * 5000) + 2000;
+
+    // Render a fish after a random time
+    setTimeout(() => {
+
+        // Render one fish
+        _sea__WEBPACK_IMPORTED_MODULE_0__.renderFish(timeoutTime);
+        // Recursively call this function
+        showFishes();
+
+    }, timeoutTime);
+}
+
+// Define function to initialize ship fight
+const initShipFight = () => {
+    // Get contants
+    const ENEMY_ARTILLERY_SPEED = 1000;
+    const OUR_ARTILLERY_SPEED = 10000;
+    const CANNONBALL_SPEED = 8000;
+
+    // Get both cannons and ships & #game element
+    const game = document.getElementById('game');
+    const cannon = document.getElementById('cannon');
+    const ship = document.getElementById('ship');
+    const enemyCannon = document.getElementById('enemycannon');
+    const enemyShip = document.getElementById('enemyship');
+
+    // Store lifes of enemy and our ship
+    const state = {
+        lifes: {
+            we: 3,
+            enemy: 3
+        },
+        isSank: false,
+        elems: { cannon, ship, enemyCannon, enemyShip, game },
+        consts: { ENEMY_ARTILLERY_SPEED, OUR_ARTILLERY_SPEED, CANNONBALL_SPEED }
+    }
+
+    // Create array of fired cannonballs
+    const cannonballs = [];
+
+    // Set interval for firing enemy cannonballs
+    const enemyArtillery = setInterval(() => {
+
+        // Fire enemy cannonballs
+        const cannonball = _shipFight__WEBPACK_IMPORTED_MODULE_1__.fire('ENEMY', state);
+
+        // Listen for custom event 'shot'
+        cannonball.addEventListener('shot', () => {
+
+            // Remove one our life
+            state.lifes.we -= 1;
+
+            // Check for sank ship
+            if (state.lifes.we < 1) {
+                state.isSank = true;
+            }
+        })
+
+        // Push cannonball to cannonballs array
+        cannonballs.push(cannonball);
+
+    }, ENEMY_ARTILLERY_SPEED);
+
+    // Listen for pressed keys
+    //window.addEventListener('keydown', e => shipFightFcns.checkKeyAndPotentiallyDestroyCannonball(e, cannonballs));
+        // Check whether pressed key corresponds with any of fired enemy cannonballs
+
+        // If it does, remove cannonball
+
+    // Set timeout for firing our cannonballs
+    const ourArillery = setInterval(() => {
+
+        // Fire our cannonballs
+        const cannonball = _shipFight__WEBPACK_IMPORTED_MODULE_1__.fire('WE');
+
+    }, OUR_ARTILLERY_SPEED);
+
+}
+
+/***/ }),
+
+/***/ "./src/js/functions/sea.js":
+/*!*********************************!*\
+  !*** ./src/js/functions/sea.js ***!
+  \*********************************/
+/*! namespace exports */
+/*! export renderFish [provided] [no usage info] [missing usage info prevents renaming] */
 /*! other exports [not provided] [no usage info] */
 /*! runtime requirements: __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "showFishes": () => /* binding */ showFishes
+/* harmony export */   "renderFish": () => /* binding */ renderFish
 /* harmony export */ });
 // Define function for rendering one fish
 const renderFish = (timeoutTime) => {
@@ -64,18 +169,68 @@ const renderFish = (timeoutTime) => {
     }, timeoutTime * 2);
 }
 
-const showFishes = () => {
-    const timeoutTime = Math.floor(Math.random() * 5000) + 2000;
+/***/ }),
 
-    // Render a fish after a random time
-    setTimeout(() => {
+/***/ "./src/js/functions/shipFight.js":
+/*!***************************************!*\
+  !*** ./src/js/functions/shipFight.js ***!
+  \***************************************/
+/*! namespace exports */
+/*! export fire [provided] [no usage info] [missing usage info prevents renaming] */
+/*! other exports [not provided] [no usage info] */
+/*! runtime requirements: __webpack_require__.r, __webpack_exports__, __webpack_require__.d, __webpack_require__.* */
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-        // Render one fish
-        renderFish(timeoutTime);
-        // Recursively call this function
-        showFishes();
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "fire": () => /* binding */ fire
+/* harmony export */ });
+// Define function for firing cannonballs
+const fire = (type, state) => {
 
-    }, timeoutTime);
+    // Create cannonball element with class
+    const cannonball  = document.createElement('div');
+    cannonball.classList.add('game__cannonball');
+
+    // Set styles for enemy cannonball
+    if (type === 'ENEMY') {
+        // Get starting position ( offset from top of viewport + scrolled from top + half of inner height )
+        const enemyCannonPositionY = state.elems.enemyCannon.getBoundingClientRect().top + window.scrollY + ( state.elems.enemyCannon.offsetHeight / 2 );
+        const enemyCannonPositionX = state.elems.enemyCannon.getBoundingClientRect().left + ( state.elems.enemyCannon.offsetWidth / 2 );
+
+        // Get target position
+        const cannonPositionY = state.elems.cannon.getBoundingClientRect().top + window.scrollY + ( state.elems.cannon.offsetHeight / 2 );
+        const cannonPositionX = state.elems.cannon.getBoundingClientRect().left + ( state.elems.cannon.offsetWidth / 2 );
+
+        // Set styles
+        cannonball.style.width = '2rem';
+        cannonball.style.height = '2rem';
+        cannonball.style.top = enemyCannonPositionY + 'px';
+        cannonball.style.left = enemyCannonPositionX + 'px';
+        cannonball.style.transition = `all ${ state.consts.CANNONBALL_SPEED / 1000 }s ease-in`;
+
+        // Prepend cannonball
+        game.prepend(cannonball);
+
+        // Set style which cannonball should transite to
+        setTimeout(() => {
+            cannonball.style.top = cannonPositionY + 'px';
+            cannonball.style.left = cannonPositionX + 'px';
+            cannonball.style.width = '10rem';
+            cannonball.style.height = '10rem';
+        }, 10);
+
+        // Set timeout to emit 'shot' event
+        setTimeout(() => {
+            const shotEvent = new Event('shot');
+            cannonball.dispatchEvent(shotEvent);
+        }, state.consts.CANNONBALL_SPEED)
+
+        return cannonball;
+    } else if (type === 'WE') {
+        return;
+    }
+
 }
 
 /***/ }),
@@ -115,7 +270,8 @@ const ready = callbackFunc => {
 
 const initGame = (type) => {
     switch (type) {
-        case 'VOLCANO': {
+        case 'SHIP_FIGHT': {
+            _functions_index__WEBPACK_IMPORTED_MODULE_0__.initShipFight();
             break;
         }
         default: return;

@@ -11,3 +11,9 @@ exports.getSea = (req, res, next) => {
         ...passedToViews(req, "Sea map")
     });
 }
+
+exports.getGame = (req, res, next) => {
+    res.render('game/sea-game', {
+        ...passedToViews(req, "Sea game")
+    })
+}
